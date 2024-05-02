@@ -1,4 +1,4 @@
-# Fast-Convolutional-for-Multi-Channel-Objecet-Detection
+## 1 Fast-Convolutional-for-Multi-Channel-Objecet-Detection
 Fast convolutional for multi-channel object detection and evaluation inspired by SFA3D
 
 SFA3D:
@@ -12,7 +12,36 @@ SFA3D:
 }
 '''
 
-## 1.  Hierarchy
+## 2. DATASET
+3D KITTI Dataset은[Link](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d).
+에서 다운 받을 수 있습니다.
+구성 요소는 다음과 같습니다:
+
+- Velodyne point clouds _**(29 GB)**_
+- Training labels of object data set _**(5 MB)**_
+- Camera calibration matrices of object data set _**(16 MB)**_
+- **Left color images** of object data set _**(12 GB)**_ (For visualization purpose only)
+
+## 3. Train
+### Train Code
+'''
+!python train.py --gpu_idx 0 --mode classic #--mode checkpoints folder
+'''
+
+## 4. Evaluate (AP)
+### Evaluate Code
+'''
+!python train.py --evaluate  --gpu_idx 0 --resume_path './model_path'
+'''
+
+
+## 5. Visualization (Demo)
+### Demo Code
+'''
+!python demo_2_sides.py --gpu_idx 0 --peak_thresh 0.2 --saved_fn final_demo_classic
+'''
+
+## 6.  Hierarchy
 ```
 ${ROOT}
 └── checkpoints/
@@ -78,37 +107,6 @@ ${ROOT}
 ├── README.md 
 └── requirements.txt
 ```
-
-
-## 2. DATASET
-3D KITTI Dataset은[Link](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d).
-에서 다운 받을 수 있습니다.
-구성 요소는 다음과 같습니다:
-
-- Velodyne point clouds _**(29 GB)**_
-- Training labels of object data set _**(5 MB)**_
-- Camera calibration matrices of object data set _**(16 MB)**_
-- **Left color images** of object data set _**(12 GB)**_ (For visualization purpose only)
-
-## 3. Train
-### Train Code
-'''
-!python train.py --gpu_idx 0 --mode classic #--mode checkpoints folder
-'''
-
-## 4. Evaluate (AP)
-### Evaluate Code
-'''
-!python train.py --evaluate  --gpu_idx 0 --resume_path './model_path'
-'''
-
-
-## 5. Visualization (Demo)
-### Demo Code
-'''
-!python demo_2_sides.py --gpu_idx 0 --peak_thresh 0.2 --saved_fn final_demo_classic
-'''
-
 
  ## REFERENCE
 [1] "Object Detector for Autonomous Vehicles Based on Improved Faster RCNN": [2D 이전 버전](https://github.com/Ziruiwang409/improved-faster-rcnn/blob/main/README.md) <br/>
